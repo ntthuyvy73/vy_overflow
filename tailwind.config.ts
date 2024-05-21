@@ -1,10 +1,11 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    darkMode: ["class"],
     content: [
-        "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-        "./components/**/*.{js,ts,jsx,tsx,mdx}",
-        "./app/**/*.{js,ts,jsx,tsx,mdx}",
+        "./pages/**/*.{ts,tsx}",
+        "./components/**/*.{ts,tsx}",
+        "./app/**/*.{ts,tsx}",
+        "./src/**/*.{ts,tsx}",
     ],
     theme: {
         container: {
@@ -17,8 +18,8 @@ const config: Config = {
         extend: {
             colors: {
                 primary: {
-                    500: "#ff7000",
-                    100: "#fff1E6",
+                    500: "#FF7000",
+                    100: "#FFF1E6",
                 },
                 dark: {
                     100: "#000000",
@@ -77,4 +78,3 @@ const config: Config = {
         require("@tailwindcss/typography"),
     ],
 };
-export default config;
