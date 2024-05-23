@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Sheet,
     SheetClose,
@@ -59,16 +59,30 @@ const NavContent = () => {
 };
 
 const MobileNav = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleResize = () => {
+        if (window.innerWidth >= 640 && isOpen) {
+            setIsOpen(false);
+        }
+    };
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, [isOpen]);
+
     return (
         <section className="h-full">
-            <Sheet>
-                <SheetTrigger>
+            <Sheet open={isOpen}>
+                <SheetTrigger asChild>
                     <Image
                         src="/assets/icons/hamburger.svg"
                         alt="Menu"
                         width={36}
                         height={36}
                         className="invert-colors sm:hidden"
+                        onClick={() => setIsOpen(!isOpen)}
                     />
                 </SheetTrigger>
                 <SheetContent
